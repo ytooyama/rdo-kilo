@@ -14,5 +14,5 @@ OpenStack Compute上では上記以外のLinuxディストリビューション�
 
 ###RDOってなに？
 
-[公式サイト](https://openstack.redhat.com/Main_Page)をご覧ください。
+[公式サイト](https://www.rdoproject.org/Main_Page)をご覧ください。
 
