@@ -9,20 +9,21 @@
 
 RDO Neutron Quickstart
 
-- <http://openstack.redhat.com/Neutron-Quickstart>
-- <http://openstack.redhat.com/Neutron_with_existing_external_network>
+- <https://www.rdoproject.org/Quickstart>
+- <https://www.rdoproject.org/Neutron-Quickstart>
+- <https://www.rdoproject.org/Neutron_with_existing_external_network>
 
 ##Step 0: 要件
 
 Software:
 
 - Red Hat Enterprise Linux (RHEL) 7以降
-- CentOS 7, Scientific Linux 7以降
+- CentOS 7以降
 - Fedora 20-22
 
 ワークアラウンドのページを確認してください。
 
-- <https://openstack.redhat.com/Workarounds>
+- <https://www.rdoproject.org/Workarounds>
 
 Hardware:
 
@@ -225,7 +226,7 @@ CONFIG_NEUTRON_ML2_TENANT_NETWORK_TYPES=local
 
 次に外部と通信できるようにするための設定を行います。外部ネットワークとの接続を提供するノード(通称ネットワークノード)に仮想ネットワークブリッジインターフェイスであるbr-exを設定します。
 
-- <http://openstack.redhat.com/Neutron_with_existing_external_network>
+- <https://www.rdoproject.org/Neutron_with_existing_external_network>
 
 ###◆public用として使うNICの設定を確認
 コマンドを実行して、アンサーファイルに設定したPublic用NIC(ゲートウェイとつながっている方)を確認します。
