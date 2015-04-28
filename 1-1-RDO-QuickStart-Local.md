@@ -1,6 +1,6 @@
 #RDO Kilo-Neutron Quickstart 単体構成編
 
-最終更新日: 2015/04/27
+最終更新日: 2015/04/28
 
 ##この文書について
 この文書はとりあえず1台に全部入りのOpenStack Kilo環境をさくっと構築する場合の手順を説明しています。
@@ -76,8 +76,9 @@ net.ipv4.conf.all.forwarding = 1
 # yum install http://rdoproject.org/repos/openstack-kilo/rdo-release-kilo.rpm
 ````
 
-【注】正式リリースまでは[こちらの書き込み](https://www.redhat.com/archives/rdo-list/2015-April/msg00198.html)にあるように追加リポジトリーを設定してください。
+【注1】正式リリースまでは[こちらの書き込み](https://www.redhat.com/archives/rdo-list/2015-April/msg00198.html)にあるように追加リポジトリーを設定してください。
 
+【注2】2015/4/25にKilo RC2版が公開されました。利用するには[こちらの書き込み](https://www.redhat.com/archives/rdo-list/2015-April/msg00254.html)にあるように追加リポジトリーを設定してください。
 
 システムアップデートの実施:
 
