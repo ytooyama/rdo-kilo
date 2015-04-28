@@ -223,9 +223,16 @@ CONFIG_NEUTRON_ML2_TENANT_NETWORK_TYPES=local
  **** Installation completed successfully ******
 ````
 
+インストール後に表示されるDashboardのURLにブラウザでアクセスしてみます。ユーザー、パスワードはanswer.txtに設定したものでログインできます。
+
+/rootディレクトリー上にkeystonerc_hogeというユーザー別のRCファイルが作られており、そのファイルでも確認できます。
+
+![Dashboard Login](./images/login.png)
+
+
 ##Step 7: ネットワーク設定の変更
 
-次に外部と通信できるようにするための設定を行います。外部ネットワークとの接続を提供するノード(通称ネットワークノード)に仮想ネットワークブリッジインターフェイスであるbr-exを設定します。
+次に外部と通信できるようにするための設定を行います。外部ネットワークとの接続を提供するノード(1台構成時はそのマシン)に仮想ネットワークブリッジインターフェイスであるbr-exを設定します。
 
 - <https://www.rdoproject.org/Neutron_with_existing_external_network>
 
@@ -334,12 +341,12 @@ Packstackインストーラーによるインストール時にエラー出力�
 # source /root/keystonerc_admin
 (adminユーザー認証情報を読み込む)
 # nova-manage service list
-Binary           Host        Zone             Status     State Updated_At
-nova-consoleauth junode1     internal         enabled    :-)   2014-12-17 08:17:16
-nova-scheduler   junode1     internal         enabled    :-)   2014-12-17 08:17:16
-nova-conductor   junode1     internal         enabled    :-)   2014-12-17 08:17:17
-nova-compute     junode1     nova             enabled    :-)   2014-12-17 08:17:13
-nova-cert        junode1     internal         enabled    :-)   2014-12-17 08:17:16
+Binary           Host      Zone             Status     State Updated_At
+nova-consoleauth node1     internal         enabled    :-)   2015-04-28 02:22:19
+nova-scheduler   node1     internal         enabled    :-)   2015-04-28 02:22:19
+nova-conductor   node1     internal         enabled    :-)   2015-04-28 02:22:19
+nova-compute     node1     nova             enabled    :-)   2015-04-28 02:22:19
+nova-cert        node1     internal         enabled    :-)   2015-04-28 02:22:19
 ````
 
 最後に、NeutronのエージェントがOKであることを確認します。
@@ -349,10 +356,10 @@ nova-cert        junode1     internal         enabled    :-)   2014-12-17 08:17:
 +--------------------+---------+-------+
 | agent_type         | host    | alive |
 +--------------------+---------+-------+
-| Metadata agent     | junode1 | :-)   |
-| L3 agent           | junode1 | :-)   |
-| Open vSwitch agent | junode1 | :-)   |
-| DHCP agent         | junode1 | :-)   |
+| Metadata agent     | node1   | :-)   |
+| L3 agent           | node1   | :-)   |
+| Open vSwitch agent | node1   | :-)   |
+| DHCP agent         | node1   | :-)   |
 +--------------------+---------+-------+
 ````
 
