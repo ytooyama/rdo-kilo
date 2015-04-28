@@ -1,6 +1,6 @@
 #RDO Neutron ネットワークの設定
 
-最終更新日: 2015/04/27
+最終更新日: 2015/04/28
 
 ##この文書について
 この文書は構築したOpenStack環境にNeutronネットワークを作成する手順と作成したネットワークの確認方法の一例を説明しています。
@@ -58,6 +58,8 @@ OpenStackの環境構成をコマンドで実行する場合は、/root/keystone
 
 ````
 # keystone tenant-list
+/usr/lib/python2.7/site-packages/keystoneclient/shell.py:65: DeprecationWarning: The keystone CLI is deprecated in favor of python-openstackclient. For a Python library, continue using python-keystoneclient.
+  'python-keystoneclient.', DeprecationWarning)
 +----------------------------------+----------+---------+
 |                id                |   name   | enabled |
 +----------------------------------+----------+---------+
@@ -66,7 +68,27 @@ OpenStackの環境構成をコマンドで実行する場合は、/root/keystone
 +----------------------------------+----------+---------+
 ````
 
+従来のkeystoneコマンドも利用できますが、Kiloからはそれぞれのコマンドではなく、openstackコマンドを使うことが推奨されます。
+
+openstackコマンドでテナントの一覧を見るには、"openstack project list"を実行します。
+
+````
+# openstack project list
++----------------------------------+----------+
+| ID                               | Name     |
++----------------------------------+----------+
+| 08114e2588b14949bcf20115e7ae8a41 | admin    |
+| 30f2cc33d5f8405895e5558b077a86c6 | services |
++----------------------------------+----------+
+````
+
 - パブリックネットワークの作成
+
+````
+**注意**
+以降の内容は調査中です。従来のneutronコマンドでネットワークを作成しています。
+おそらくopenstack network create〜を使えば良いのだと思います。
+````
 
 本例ではtenant-idはadminのものを指定します｡
 
@@ -76,7 +98,7 @@ OpenStackの環境構成をコマンドで実行する場合は、/root/keystone
 
 net-createコマンドの先頭にはまずネットワーク名を記述します｡
 tenant-idは「keystone tenant-list」で出力される中から「テナント」を指定します。
-router:external=Trueは外部ネットワークとして指定するかしないかを設定します｡
+router:externalは外部ネットワークとして指定するかしないかを設定します｡
 プライベートネットワークを作る場合は指定する必要はありません｡
 
 - プライベートネットワークの作成
