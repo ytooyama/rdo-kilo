@@ -65,6 +65,26 @@ net.ipv4.conf.all.forwarding = 1
 （設定を反映）
 ````
 
+- ホスト名の設定
+
+hostnameコマンドおよび設定ファイルにホスト（コンピューター）名を設定します。
+
+````
+# hostname rdo-kilo
+# echo "rdo-kilo" > /etc/hostname
+````
+
+hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエントリーに追加します。
+
+````
+# vi /etc/hosts
+
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+↓
+127.0.0.1   rdo-kilo localhost localhost.localdomain localhost4 localhost4.localdomain4
+````
+
+
 ##Step 1: ソフトウェアリポジトリーの追加
 
 ソフトウェアパッケージのインストールとアップデートを行います｡
