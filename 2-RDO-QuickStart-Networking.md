@@ -106,7 +106,7 @@ router:externalは外部ネットワークとして指定するかしないか�
 ネットワークを共有するには--sharedオプションを付けて実行します｡
 
 ###◆ネットワークサブネットの登録
-ネットワークで利用するサブネットを定義します｡
+publicネットワークで利用するサブネットを定義します｡
 
 ````
 # neutron subnet-create --name public_subnet --enable_dhcp=False \
