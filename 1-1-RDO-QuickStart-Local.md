@@ -77,8 +77,10 @@ net.ipv4.conf.all.forwarding = 1
 ````
 
 【注1】正式リリースまでは以下のリポジトリーを追加してください。
-http://rdoproject.org/repos/openstack-kilo/rdo-testing-kilo.rpm
 
+````
+http://rdoproject.org/repos/openstack-kilo/rdo-testing-kilo.rpm
+````
 
 システムアップデートの実施:
 
