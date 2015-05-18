@@ -10,30 +10,30 @@
 RDO Neutron Quickstart
 
 - <https://www.rdoproject.org/Quickstart>
-- <https://www.rdoproject.org/Neutron-Quickstart>
 - <https://www.rdoproject.org/Neutron_with_existing_external_network>
 
 ##Step 0: 要件
 
-Software:
+ソフトウェア:
 
-- Red Hat Enterprise Linux (RHEL) 7以降
-- CentOS 7以降
-- Fedora 20-22
+- <https://www.rdoproject.org/Quickstart> を参照。
 
 ワークアラウンドのページも確認してください。
 
 - <https://www.rdoproject.org/Workarounds>
 
-Hardware:
+ハードウェア:
 
-- CPU 3Core以上
-- メモリー6GB以上
-- 最低1つのNIC(本例は2つのNICを想定)
+- CPU: 3Core以上
+- メモリー: 6GB以上
+
+- NIC:
+  - All-in-One構成: 1以上
+  - Multi Node構成: 2
 
 ※All-in-oneの構成を作る場合は、Privateネットワーク用はloインターフェイスを利用できます。
 
-- OpenStack ネットワーク
+- OpenStack ネットワーク:
 
 本書では次のネットワーク構成を利用します。
 
@@ -43,13 +43,13 @@ Instance Network | Private Network | Public Network
 gw: 192.168.2.1  | -               | gw: 192.168.1.1
 ns: 8.8.8.8      | -               | ns: 192.168.1.1
                   
-- OpenStackホスト
+- OpenStackホスト:
 
 eth0            | eth1
 --------------  | --------------
 192.168.0.10/24 | 192.168.1.10/24
 
-- カーネルパラメータの設定
+- カーネルパラメータの設定:
 
 この設定を書き込み、後述のコマンドで反映させます。
 
@@ -65,7 +65,7 @@ net.ipv4.conf.all.forwarding = 1
 （設定を反映）
 ````
 
-- ホスト名の設定
+- ホスト名の設定:
 
 hostnameコマンドおよび設定ファイルにホスト（コンピューター）名を設定します。
 
@@ -90,7 +90,7 @@ hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエン�
 ソフトウェアパッケージのインストールとアップデートを行います｡
 
 
-次のコマンドを実行してリポジトリーを有効化【注1】:
+次のコマンドを実行してリポジトリーを有効化:
 
 ````
 # yum install http://rdoproject.org/repos/openstack-kilo/rdo-release-kilo.rpm
@@ -223,9 +223,8 @@ CONFIG_NEUTRON_ML2_TENANT_NETWORK_TYPES=local
 
 ##Step 6: Packstackを実行してOpenStackのインストール
 
-実行前に、setenforce 0を実行してください。Kilo用のopenstack-selinuxパッケージがまだリリースされていないための対応です。
-
-これはSELinuxのモードを一時的に許容モードに設定するものです。再起動後は元のモードに戻ります([→詳細](https://www.redhat.com/archives/rdo-list/2015-April/msg00200.html))。
+実行前に、setenforce 0を実行してください。
+これはSELinuxのモードを一時的に許容モードに設定するものです。再起動後は元のモードに戻ります。
 
 ````
 # setenforce 0
@@ -249,8 +248,6 @@ CONFIG_NEUTRON_ML2_TENANT_NETWORK_TYPES=local
 ##Step 7: ネットワーク設定の変更
 
 次に外部と通信できるようにするための設定を行います。外部ネットワークとの接続を提供するノード(1台構成時はそのマシン)に仮想ネットワークブリッジインターフェイスであるbr-exを設定します。
-
-- <https://www.rdoproject.org/Neutron_with_existing_external_network>
 
 ###◆public用として使うNICの設定を確認
 コマンドを実行して、アンサーファイルに設定したPublic用NIC(ゲートウェイとつながっている方)を確認します。

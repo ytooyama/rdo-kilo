@@ -162,13 +162,13 @@ qrouter-97b749cb-83af-401b-9c99-12be68cb7528
        valid_lft forever preferred_lft forever
 7: qg-518ec30b-e1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN
     link/ether fa:16:3e:7b:45:d7 brd ff:ff:ff:ff:ff:ff
-    inet 172.16.214.241/16 brd 172.16.255.255 scope global qg-518ec30b-e1
+    inet 192.168.1.241/24 brd 172.16.255.255 scope global qg-518ec30b-e1
        valid_lft forever preferred_lft forever
     inet6 fe80::f816:3eff:fe7b:45d7/64 scope link
        valid_lft forever preferred_lft forever
 8: qr-5aff4ca2-49: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN
     link/ether fa:16:3e:8c:2d:70 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.4.1/24 brd 192.168.4.255 scope global qr-5aff4ca2-49
+    inet 192.168.2.1/24 brd 192.168.2.255 scope global qr-5aff4ca2-49
        valid_lft forever preferred_lft forever
     inet6 fe80::f816:3eff:fe8c:2d70/64 scope link
        valid_lft forever preferred_lft forever
