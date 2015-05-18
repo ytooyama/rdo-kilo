@@ -1,6 +1,6 @@
 #RDO Kilo-Neutron Quickstart 単体構成編
 
-最終更新日: 2015/05/07
+最終更新日: 2015/05/18
 
 ##この文書について
 この文書はとりあえず1台に全部入りのOpenStack Kilo環境をさくっと構築する場合の手順を説明しています。
@@ -94,12 +94,6 @@ hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエン�
 
 ````
 # yum install http://rdoproject.org/repos/openstack-kilo/rdo-release-kilo.rpm
-````
-
-【注1】正式リリースまでは以下のリポジトリーを追加してください。
-
-````
-http://rdoproject.org/repos/openstack-kilo/rdo-testing-kilo.rpm
 ````
 
 システムアップデートの実施:
