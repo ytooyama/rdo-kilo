@@ -190,3 +190,15 @@ rtt min/avg/max/mdev = 2.179/4.778/9.927/3.641 ms
 ````
 
 pingコマンドが通れば、外部ネットワークと接続がうまくいっていると判断できます。
+
+
+##番外:やっておくと良いかもしれないこと 
+1. CentOS 7のApache設定はデフォルトでKeepAlive Offなので、Onにしたほうがいいかもしれない。
+
+````
+# vi /etc/httpd/conf/httpd.conf
+...
+KeepAlive On
+...
+# systemctl restart httpd
+````
