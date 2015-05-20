@@ -193,7 +193,7 @@ pingコマンドが通れば、外部ネットワークと接続がうまくい�
 
 
 ##番外:気をつける点など 
-1. CentOS 7のApache設定はデフォルトでKeepAlive Offなので、Onにしたほうがいいかもしれない。
+- CentOS 7のApache設定はデフォルトでKeepAlive Offなので、Onにしたほうがいいかもしれない。
 
 ````
 # vi /etc/httpd/conf/httpd.conf
@@ -203,7 +203,7 @@ KeepAlive On
 # systemctl restart httpd
 ````
 
-2. IP設定でMACアドレスの記述を忘れずに
+- IP設定でMACアドレスの記述を忘れずに
 NetworkManagerが動いている場合はHWADDRがなくてもうまく動きますが、networkサービスに切り替えた時に、運が悪いとNICデバイス名が変わって通信できなくなります。すべてのNIC設定にHWADDRを付加して再起動すると復旧できます。
 
 
