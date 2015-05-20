@@ -43,6 +43,8 @@ Instance Network | Private Network | Public Network
 gw: 192.168.2.1  | -               | gw: 192.168.1.1
 ns: 8.8.8.8      | -               | ns: 192.168.1.1
                   
+##Step 1: IPアドレスなどの設定
+
 - OpenStackホスト:
 
 eth0            | eth1
@@ -85,7 +87,7 @@ hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエン�
 ````
 
 
-##Step 1: ソフトウェアリポジトリーの追加
+##Step 2: ソフトウェアリポジトリーの追加
 
 ソフトウェアパッケージのインストールとアップデートを行います｡
 
