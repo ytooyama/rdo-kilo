@@ -192,7 +192,7 @@ rtt min/avg/max/mdev = 2.179/4.778/9.927/3.641 ms
 pingコマンドが通れば、外部ネットワークと接続がうまくいっていると判断できます。
 
 
-##番外:やっておくと良いかもしれないこと 
+##番外:気をつける点など 
 1. CentOS 7のApache設定はデフォルトでKeepAlive Offなので、Onにしたほうがいいかもしれない。
 
 ````
@@ -201,4 +201,13 @@ pingコマンドが通れば、外部ネットワークと接続がうまくい�
 KeepAlive On
 ...
 # systemctl restart httpd
+````
+
+2. IP設定でMACアドレスの記述を忘れずに
+NetworkManagerが動いている場合はHWADDRがなくてもうまく動きますが、networkサービスに切り替えた時に、運が悪いとNICデバイス名が変わって通信できなくなります。すべてのNIC設定にHWADDRを付加して再起動すると復旧できます。
+
+
+````
+...
+HWADDR=xx:xx:xx:xx:xx:xx
 ````
