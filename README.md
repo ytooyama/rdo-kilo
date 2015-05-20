@@ -17,7 +17,7 @@ OpenStack Compute上では上記以外のLinuxディストリビューション�
 構成             | CentOS 7.1   | Fedora 22   |
 --------------- | ------------ | ----------- |
 All-in-One      | OK           | TBD         |
-Multi-3Node     | TBD          | TBD         |
+Multi-3Node     | OK           | TBD         |
 Other Case      | TBD          | TBD         |
 
 ###RDOってなに？

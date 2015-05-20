@@ -1,9 +1,9 @@
-#RDO Kilo-Neutron Quickstart 単体構成編
+#RDO Kilo-Neutron Quickstart 3台構成編
 
 最終更新日: 2015/05/20
 
 ##この文書について
-この文書はとりあえず1台に全部入りのOpenStack Kilo環境をさくっと構築する場合の手順を説明しています。
+この文書はとりあえず3台構成のOpenStack Kilo環境を構築する場合の手順を説明しています。
 
 この文書は以下の公開資料を元にしています。
 
@@ -28,10 +28,7 @@ RDO Neutron Quickstart
 - メモリー: 6GB以上
 
 - NIC:
-  - All-in-One構成: 1以上
   - Multi Node構成: 2
-
-※All-in-oneの構成を作る場合は、Privateネットワーク用はloインターフェイスを利用できます。
 
 - OpenStack ネットワーク:
 
@@ -42,12 +39,41 @@ Instance Network | Private Network | Public Network
 192.168.2.0/24   | 192.168.0.0/24  | 192.168.1.0/24
 gw: 192.168.2.1  | -               | gw: 192.168.1.1
 ns: 8.8.8.8      | -               | ns: 192.168.1.1
+
+
+事前に各ノードのNICの設定に、"NM_CONTROLLED=no"を追記しておいてください。
+
+````
+# vi /etc/sysconfig/network-scripts/ifcfg-eth0
+...
+NM_CONTROLLED=no
+````
+
+````
+# vi /etc/sysconfig/network-scripts/ifcfg-eth1
+...
+NM_CONTROLLED=no
+````
+
                   
-- OpenStackホスト:
+- OpenStack controllerホスト:
 
 eth0            | eth1
 --------------  | --------------
 192.168.0.10/24 | 192.168.1.10/24
+
+- OpenStack networkホスト:
+
+eth0            | eth1
+--------------  | --------------
+192.168.0.11/24 | 192.168.1.11/24
+
+- OpenStack computeホスト:
+
+eth0            | eth1
+--------------  | --------------
+192.168.0.12/24 | 192.168.1.12/24
+
 
 - カーネルパラメータの設定:
 
@@ -90,13 +116,13 @@ hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエン�
 ソフトウェアパッケージのインストールとアップデートを行います｡
 
 
-次のコマンドを実行してリポジトリーを有効化:
+各ノードで次のコマンドを実行してリポジトリーを有効化:
 
 ````
 # yum install http://rdoproject.org/repos/openstack-kilo/rdo-release-kilo.rpm
 ````
 
-システムアップデートの実施:
+各ノードでシステムアップデートの実施:
 
 ````
 # yum -y update
@@ -151,35 +177,29 @@ CONFIG_HEAT_INSTALL=n
 CONFIG_NAGIOS_INSTALL=y
 ````
 
-- コンピュートノードを指定(カンマ区切りで複数可)
+- controllerノードを指定
+
+````
+CONFIG_CONTROLLER_HOST=192.168.1.10
+````
+
+- networkノードを指定
+
+````
+CONFIG_NETWORK_HOSTS=192.168.1.11
+````
+
+- computeノードを指定(カンマ区切りで複数可)
 
 複数のコンピュートノードを追加するにはカンマでIPアドレスを列挙します｡
 
-- 1つ指定する例
-
 ````
-CONFIG_COMPUTE_HOSTS=192.168.1.10
-````
-
-- 複数指定する例
-
-````
-CONFIG_COMPUTE_HOSTS=192.168.1.10,192.168.1.11
+CONFIG_COMPUTE_HOSTS=192.168.1.12
 ````
 
 - NICを利用したいものに変更する
 
 eth1がゲートウェイに接続されている場合の記述例。
-
-（例-1）loを利用(1台構成時のみ可)。
-
-````
-CONFIG_NOVA_COMPUTE_PRIVIF=lo
-CONFIG_NOVA_NETWORK_PRIVIF=lo
-CONFIG_NOVA_NETWORK_PUBIF=eth1
-````
-
-（例-2）eth0を利用(複数台構成時やNICを分ける場合)。
 
 ````
 CONFIG_NOVA_COMPUTE_PRIVIF=eth0
@@ -214,12 +234,6 @@ CONFIG_KEYSTONE_ADMIN_PW=password
 ```
 CONFIG_PROVISION_DEMO=n
 ```
-- 単体構成にする場合はローカルモードで実行する設定を行う。複数ノードの場合はgre,vxlan,vlanなど
-
-````
-CONFIG_NEUTRON_ML2_TYPE_DRIVERS=local
-CONFIG_NEUTRON_ML2_TENANT_NETWORK_TYPES=local
-````
 
 ##Step 6: Packstackを実行してOpenStackのインストール
 
@@ -234,6 +248,11 @@ CONFIG_NEUTRON_ML2_TENANT_NETWORK_TYPES=local
 
 ````
 # packstack --answer-file=answer.txt
+Welcome to the Packstack setup utility
+...
+root@192.168.1.10's password:   #各ノードのパスワードを入れる
+root@192.168.1.11's password:
+root@192.168.1.12's password:
 ...
  **** Installation completed successfully ******
 ````
