@@ -69,12 +69,12 @@ net.ipv4.conf.all.forwarding = 1
 
 - ホスト名の設定:
 
-hostnameコマンドおよび設定ファイルにホスト（コンピューター）名を設定します。
+[hostnamectlコマンド](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Networking_Guide/sec_Configuring_Host_Names_Using_hostnamectl.html)を使ってホスト（コンピューター）名を設定します。ちなみに従来のように、hostnameコマンドと/etc/hostnameの編集でも可能です。
 
 ````
-# hostname rdo-kilo
-# echo "rdo-kilo" > /etc/hostname
+# hostnamectl set-hostname rdo-kilo
 ````
+
 
 hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエントリーに追加します。
 
