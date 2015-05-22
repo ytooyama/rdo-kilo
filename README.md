@@ -12,13 +12,16 @@ RDO PackstackでOpenStack Kiloの色々な環境を作る手順書のような�
 
 OpenStack Compute上では上記以外のLinuxディストリビューションも動作します。
 
-###動作可否状況(2015/05/18現在)
+###動作可否状況(2015/05/22現在)
 
-構成             | CentOS 7.1   | Fedora 22   |
---------------- | ------------ | ----------- |
-All-in-One      | OK           | TBD         |
-Multi-3Node     | OK           | TBD         |
-Other Case      | TBD          | TBD         |
+構成             | CentOS 7.1   | Fedora 21   | Fedora 22   
+--------------- | ------------ | ----------- | ----------- 
+All-in-One      | OK           | TBD         | TBD        
+Multi-3Node     | OK           | TBD         | TBD        
+Other Case      | TBD          | TBD         | TBD        
+
+Info:
+現時点ではFedora 22ではPuppetスクリプトに問題があるようで動かないようです（[この辺り](https://www.redhat.com/archives/rdo-list/2015-May/msg00216.html)を参照）。
 
 ###RDOってなに？
 
