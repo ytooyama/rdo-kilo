@@ -101,12 +101,17 @@ hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエン�
 
 ソフトウェアパッケージのインストールとアップデートを行います｡
 
-
-各ノードで次のコマンドを実行してリポジトリーを有効化:
+次のコマンドを実行してリポジトリーを有効化:
 
 ````
 # yum install http://rdoproject.org/repos/openstack-kilo/rdo-release-kilo.rpm
 ````
+
+RDO Kilo for Fedora 21はテスト中なので、リリース版のほうは無効にして、テスト版のリポジトリーを有効化する。[公式ページ](https://www.rdoproject.org/Quickstart) の最新の手順も確認してください。
+
+````
+# yum-config-manager --disable openstack-kilo
+# yum-config-manager --enable openstack-kilo-testing
 
 各ノードでシステムアップデートの実施:
 
