@@ -1,6 +1,6 @@
 #RDO Kilo-Neutron Quickstart 3台構成編
 
-最終更新日: 2015/05/20
+最終更新日: 2015/05/25
 
 ##この文書について
 この文書はとりあえず3台構成のOpenStack Kilo環境を構築する場合の手順を説明しています。
@@ -43,20 +43,6 @@ ns: 8.8.8.8      | -               | ns: 192.168.1.1
 
 ##Step 1: IPアドレスなどの設定
 
-事前に各ノードのNICの設定に、"NM_CONTROLLED=no"を追記しておいてください。
-
-````
-# vi /etc/sysconfig/network-scripts/ifcfg-eth0
-...
-NM_CONTROLLED=no
-````
-
-````
-# vi /etc/sysconfig/network-scripts/ifcfg-eth1
-...
-NM_CONTROLLED=no
-````
-                  
 - OpenStack controllerホスト:
 
 eth0            | eth1
