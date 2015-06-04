@@ -1,6 +1,6 @@
 #RDO Kilo-Neutron Quickstart 単体構成編
 
-最終更新日: 2015/05/25
+最終更新日: 2015/06/04
 
 ##この文書について
 この文書はとりあえず1台に全部入りのOpenStack Kilo環境をさくっと構築する場合の手順を説明しています。
@@ -95,15 +95,6 @@ hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエン�
 
 ````
 # yum install http://rdoproject.org/repos/openstack-kilo/rdo-release-kilo.rpm
-````
-
-[Fedoraのみ]次のコマンドを実行してリポジトリー設定の変更:
-
-RDO Kilo for Fedora 21はテスト中なので、リリース版のほうは無効にして、テスト版のリポジトリーを有効化する。[公式ページ](https://www.rdoproject.org/Quickstart) の最新の手順も確認してください。
-
-````
-# yum-config-manager --disable openstack-kilo
-# yum-config-manager --enable openstack-kilo-testing
 ````
 
 システムアップデートの実施:
