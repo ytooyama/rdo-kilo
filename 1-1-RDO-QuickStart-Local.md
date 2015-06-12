@@ -1,6 +1,6 @@
 #RDO Kilo-Neutron Quickstart 単体構成編
 
-最終更新日: 2015/06/04
+最終更新日: 2015/06/12
 
 ##この文書について
 この文書はとりあえず1台に全部入りのOpenStack Kilo環境をさくっと構築する場合の手順を説明しています。
@@ -42,6 +42,31 @@ Instance Network | Private Network | Public Network
 192.168.2.0/24   | 192.168.0.0/24  | 192.168.1.0/24
 gw: 192.168.2.1  | -               | gw: 192.168.1.1
 ns: 8.8.8.8      | -               | ns: 192.168.1.1
+
+- NetworkManagerの停止と無効化:
+
+````
+# systemctl stop NetworkManager
+# systemctl disable NetworkManager
+# systemctl enable network
+````
+
+- /etc/sysconfig/network-scripts/ifcfg-"interface_name"に「DEVICE="interface_name"」を追記
+
+  - "interface_name"は、例えば "eth0" とか "em1" などが使われる。
+
+````
+...
+NAME=eth0
+DEVICE=eth0
+````
+
+Networkデーモンの開始:
+
+````
+# ifdown "interface_name" && systemctl start network
+````
+
                   
 ##Step 1: IPアドレスなどの設定
 
@@ -294,12 +319,6 @@ GATEWAY=192.168.1.1    # gateway
 DNS1=8.8.8.8           # nameserver
 DNS2=8.8.4.4
 NM_CONTROLLED=no
-````
-
-- Packstackインストーラー実行後に、「Warning: NetworkManager is active on xx.xx.xx.xx... OpenStack networking currently does not work on systems that have the Network Manager service enabled.」のようなメッセージが出た場合は、NetworkManagerからnetworkサービスへの切り替え設定を実行します｡再起動後networkサービスが使われます。
-
-````
-# systemctl disable NetworkManager && systemctl enable network
 ````
 
 ここまでできたらいったんホストを再起動します。
