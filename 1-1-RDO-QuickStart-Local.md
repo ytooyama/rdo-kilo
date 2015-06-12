@@ -138,7 +138,7 @@ hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエン�
 python-netaddr
 ````
 
-##Step 4:DryRunモードでpackstackコマンドの実施
+##Step 4:DryRunモードでPackstackコマンドの実施
 
 コントローラーノードで以下のようにコマンドを実行してマニフェストファイルを作成します。
 
