@@ -134,7 +134,8 @@ hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエン�
 コントローラーノードで以下のようにコマンドを実行します｡
 
 ````
-# yum install -y openstack-packstack python-netaddr
+# yum install -y openstack-packstack openstack-packstack-doc \ 
+python-netaddr
 ````
 
 
