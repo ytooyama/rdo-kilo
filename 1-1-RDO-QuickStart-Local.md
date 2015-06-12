@@ -268,7 +268,7 @@ CONFIG_NEUTRON_ML2_TENANT_NETWORK_TYPES=local
 
 エラーが出ず、インストールが正常に完了すれば「Installation completed successfully」と表示されます。
 
-インストール後に表示されるDashboardのURLにブラウザでアクセスしてみます。ユーザー、パスワードはanswer.txtに設定したものでログインできます。
+インストール後に表示されるDashboardのURLにブラウザでアクセスしてみます。ユーザー、パスワードはアンサーファイルに設定したものでログインできます。
 
 /rootディレクトリー上にkeystonerc_hogeというユーザー別のRCファイルが作られており、そのファイルでも確認できます。
 
