@@ -138,16 +138,23 @@ hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエン�
 python-netaddr
 ````
 
+##Step 4:DryRunモードでpackstackコマンドの実施
 
-##Step 4:アンサーファイルを生成
-
-コントローラーノードで以下のようにコマンドを実行してアンサーファイルを作成します｡
+コントローラーノードで以下のようにコマンドを実行してマニフェストファイルを作成します。
 
 ````
-# packstack --gen-answer-file=answer.txt
-(answer.txtという名前のファイルを作成する場合)
+# packstack --dry-run --allinone \ 
+ --default-password=password \ 
+ --provision-demo=n 
+
+Welcome to the Packstack setup utility
+...
+ **** Installation completed successfully ******
+Additional information:
+ * A new answerfile was created in: /root/packstack-answers-20150612-162316.txt
 ````
 
+処理が終わると、/rootディレクトリーにアンサーファイル（本例ではpackstack-answers-20150612-162316.txt）が作られます。
 アンサーファイルを使うことで定義した環境でOpenStackをデプロイできます｡
 
 作成したアンサーファイルは1台のマシンにすべてをインストールする設定が行われています｡IPアドレスや各種パスワードなどを適宜設定します｡
@@ -155,12 +162,6 @@ python-netaddr
 ##Step 5:アンサーファイルを自分の環境に合わせて設定
 
 OpenStack環境を作るには最低限以下のパラメータを設定します。項目についてはPackstackのヘルプを確認してください。
-
-- デフォルトパスワードを指定
-
-````
-CONFIG_DEFAULT_PASSWORD=password
-````
 
 - コンポーネントのインストール可否を指定
 
@@ -260,7 +261,7 @@ CONFIG_NEUTRON_ML2_TENANT_NETWORK_TYPES=local
 設定を書き換えたアンサーファイルを使ってOpenStackを導入するには、次のようにアンサーファイルを指定して実行します。
 
 ````
-# packstack --answer-file=answer.txt
+# packstack --answer-file=packstack-answers-20150612-162316.txt
 ...
  **** Installation completed successfully ******
 ````
