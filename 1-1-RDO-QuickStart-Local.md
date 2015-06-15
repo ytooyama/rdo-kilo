@@ -1,6 +1,6 @@
 #RDO Kilo-Neutron Quickstart 単体構成編
 
-最終更新日: 2015/06/12
+最終更新日: 2015/06/15
 
 ##この文書について
 この文書はとりあえず1台に全部入りのOpenStack Kilo環境をさくっと構築する場合の手順を説明しています。
@@ -57,8 +57,8 @@ ns: 8.8.8.8      | -               | ns: 192.168.1.1
 
 ````
 ...
-NAME=eth0
-DEVICE=eth0
+NAME=eth1
+DEVICE=eth1
 ````
 
 Networkデーモンの開始:
