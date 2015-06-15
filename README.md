@@ -23,13 +23,19 @@ Multi-3Node     | OK           | TBD         | TBD
 Other Case      | TBD          | TBD         | TBD        
 
 All-in-One:
+
 [公式の手順](https://www.rdoproject.org/Quickstart)に従ってインストールできた
+
 One Node:
+
 [1-1の手順](1-1-RDO-QuickStart-Local.md)で動作した
+
 Multi-3Node:
+
 3台構成を構築して動作した
 
 Info:
+
 特になし
 
 ###RDOってなに？
