@@ -1,6 +1,6 @@
 #RDO Neutron ネットワークの設定
 
-最終更新日: 2015/06/04
+最終更新日: 2015/06/15
 
 ##この文書について
 この文書は構築したOpenStack環境にNeutronネットワークを作成する手順と作成したネットワークの確認方法の一例を説明しています。
@@ -212,3 +212,11 @@ NetworkManagerが動いている場合はHWADDRがなくてもうまく動きま
 ...
 HWADDR=xx:xx:xx:xx:xx:xx
 ````
+
+- Unable to establish connection to http://xxx.xxx.xxx.xxx:5000/v2.0/tokensというエラーが発生する
+
+KiloでUnable to establish connection to http://xxx.xxx.xxx.xxx:5000/v2.0/tokensといったエラーが出た場合はKeystoneが正常に動いていないので、httpdを再起動してみてください。その後、keystone token-getなどのコマンドで応答が返ってくれば問題ないです。
+
+- openstack-statusの結果がなかなか出てこない
+
+openstack-statusコマンドが含まれるopenstack-utilsパッケージは、更新日をみる限りおそらく更新されていないので使わないほうがいいです。パッケージ依存の関係で入っていますが、Kiloではうまく動かないようです。
