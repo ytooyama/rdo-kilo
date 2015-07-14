@@ -1,6 +1,6 @@
 #RDO Kilo-Neutron Quickstart 3台構成編
 
-最終更新日: 2015/06/15
+最終更新日: 2015/07/14
 
 ##この文書について
 この文書はとりあえず3台構成のOpenStack Kilo環境を構築する場合の手順を説明しています。
@@ -145,6 +145,13 @@ hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエン�
 ````
 # yum install -y openstack-packstack openstack-packstack-doc \ 
 python-netaddr
+````
+
+Fedora 21ではつぎのパッケージを[追加でインストールする必要がある](https://ask.openstack.org/en/question/69069/fedora-21kilo-install-could-not-prefetch-keystone_service-provider-openstack/?answer=78357#post-id-78357)（[参考2](http://blog.csdn.net/happyteafriends/article/details/46651153)）ようです。CentOS 7.xでは不要。
+
+````
+# pip3.4 install --upgrade cliff
+# pip install cliff==1.13.0
 ````
 
 ##Step 4:DryRunモードでPackstackコマンドの実施
