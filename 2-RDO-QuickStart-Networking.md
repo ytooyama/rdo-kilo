@@ -163,7 +163,7 @@ default via 172.17.14.1 dev qg-fdf68416-44
  ping -c 3 -I qg-fdf68416-44 192.168.1.241
 
 # ip netns exec `ip netns|grep qrouter` \
- ping -c 3 -I qg-fdf68416-44 192.168.1.241
+ ping -c 3 -I qg-fdf68416-44 192.168.1.1
  
 # ip netns exec `ip netns|grep qrouter` \
  ping -c 3 -I qg-fdf68416-44 8.8.8.8
