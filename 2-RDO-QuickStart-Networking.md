@@ -1,6 +1,6 @@
 #RDO Neutron ネットワークの設定
 
-最終更新日: 2015/06/15
+最終更新日: 2015/07/15
 
 ##この文書について
 この文書は構築したOpenStack環境にNeutronネットワークを作成する手順と作成したネットワークの確認方法の一例を説明しています。
@@ -151,42 +151,25 @@ neutronコマンドでネットワークを定義したことで仮想ルータ�
 
 ````
 # ip netns
-qrouter-97b749cb-83af-401b-9c99-12be68cb7528
+qrouter-580e8e2f-f99a-4c33-8dea-7369bcc12c8d
+qdhcp-cdb0f492-cf59-40ac-8218-4fbabbbf9c08
 
-# ip netns exec `ip netns|grep qrouter` ip a
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host
-       valid_lft forever preferred_lft forever
-7: qg-518ec30b-e1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN
-    link/ether fa:16:3e:7b:45:d7 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.1.241/24 brd 172.16.255.255 scope global qg-518ec30b-e1
-       valid_lft forever preferred_lft forever
-    inet6 fe80::f816:3eff:fe7b:45d7/64 scope link
-       valid_lft forever preferred_lft forever
-8: qr-5aff4ca2-49: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN
-    link/ether fa:16:3e:8c:2d:70 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.2.1/24 brd 192.168.2.255 scope global qr-5aff4ca2-49
-       valid_lft forever preferred_lft forever
-    inet6 fe80::f816:3eff:fe8c:2d70/64 scope link
-       valid_lft forever preferred_lft forever
+# ip netns exec `ip netns|grep qrouter` ip r
+default via 172.17.14.1 dev qg-fdf68416-44
+192.168.1.0/24 dev qg-fdf68416-44  proto kernel  scope link  src 192.168.1.241
+192.168.2.0/24 dev qr-416cae4f-17  proto kernel  scope link  src 192.168.2.1
 
 # ip netns exec `ip netns|grep qrouter` \
- ping -c 3 -I qg-518ec30b-e1 8.8.8.8
-PING 8.8.8.8 (8.8.8.8) from 172.16.214.241 qg-518ec30b-e1: 56(84) bytes of data.
-64 bytes from 8.8.8.8: icmp_seq=1 ttl=53 time=9.92 ms
-64 bytes from 8.8.8.8: icmp_seq=2 ttl=53 time=2.22 ms
-64 bytes from 8.8.8.8: icmp_seq=3 ttl=53 time=2.17 ms
-
---- 8.8.8.8 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2002ms
-rtt min/avg/max/mdev = 2.179/4.778/9.927/3.641 ms
+ ping -c 3 -I qg-fdf68416-44 192.168.1.241
 
 # ip netns exec `ip netns|grep qrouter` \
- ping -c 3 -I qr-5aff4ca2-49 192.168.2.1
-...
+ ping -c 3 -I qg-fdf68416-44 192.168.1.241
+ 
+# ip netns exec `ip netns|grep qrouter` \
+ ping -c 3 -I qg-fdf68416-44 8.8.8.8
+
+# ip netns exec `ip netns|grep qrouter` \
+ ping -c 3 -I qr-416cae4f-17 192.168.2.1
 ````
 
 pingコマンドが通れば、外部ネットワークと接続がうまくいっていると判断できます。
