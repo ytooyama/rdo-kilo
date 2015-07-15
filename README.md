@@ -6,8 +6,8 @@ RDO PackstackでOpenStack Kiloの色々な環境を作る手順書のような�
 ###環境について
 最小インストールした以下の環境でPackstackコマンドを実行して環境を作ります。
 
-- CentOS 7以降
-  - CentOS 7.1
+- CentOS 7/7.1
+- Fedora 21
 
 そのうち、もう少しいろいろなディストリビューションで動作確認します。
 
