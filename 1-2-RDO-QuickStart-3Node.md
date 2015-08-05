@@ -1,6 +1,6 @@
 #RDO Kilo-Neutron Quickstart 3台構成編
 
-最終更新日: 2015/08/04
+最終更新日: 2015/08/05
 
 ##この文書について
 この文書はとりあえず3台構成のOpenStack Kilo環境を構築する場合の手順を説明しています。
@@ -150,9 +150,18 @@ Fedora 21ではつぎのパッケージを[追加でインストールする必�
 
 ````
 # yum -y install python-pip
-# pip install --upgrade cliff pip cmd2
-# pip install cliff==1.13.0
+# pip install --upgrade pip cmd2 cliff
 ````
+
+packstackコマンドを実施する前にバージョンを確認してください。特にpipとcliffのバージョンが上記以上のバージョンでないとエラーになる可能性があります。
+
+````
+# pip list | grep -e pip -e cmd2 -e cliff
+cliff (1.13.0)
+cmd2 (0.6.8)
+pip (7.1.0)
+````
+
 
 ##Step 4:DryRunモードでPackstackコマンドの実施
 
