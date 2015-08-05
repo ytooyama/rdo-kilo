@@ -275,7 +275,7 @@ CONFIG_PROVISION_DEMO=n
 設定を書き換えたアンサーファイルを使ってOpenStackを導入するには、次のようにアンサーファイルを指定して実行します。
 
 ````
-# packstack --answer-file=packstack-answers-20150612-162316.txtß
+# packstack --answer-file=packstack-answers-20150612-162316.txt
 Welcome to the Packstack setup utility
 ...
 root@192.168.1.10's password:   #各ノードのパスワードを入れる
