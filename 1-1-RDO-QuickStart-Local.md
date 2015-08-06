@@ -1,6 +1,6 @@
 #RDO Kilo-Neutron Quickstart 単体構成編
 
-最終更新日: 2015/08/05
+最終更新日: 2015/08/06
 
 ##この文書について
 この文書はとりあえず1台に全部入りのOpenStack Kilo環境をさくっと構築する場合の手順を説明しています。
@@ -140,7 +140,7 @@ hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエン�
 Fedora 21ではつぎのパッケージを[追加でインストールする必要がある](https://ask.openstack.org/en/question/69069/fedora-21kilo-install-could-not-prefetch-keystone_service-provider-openstack/?answer=78357#post-id-78357)（[参考2](http://blog.csdn.net/happyteafriends/article/details/46651153)）ようです。CentOS 7.xでは不要。
 
 ````
-# yum -y install python-pip
+# yum -y install python-pip python-cmd2
 # pip install --upgrade pip cmd2 cliff
 ````
 

@@ -13,13 +13,13 @@ RDO PackstackでOpenStack Kiloの色々な環境を作る手順書のような�
 
 OpenStack Compute上では上記以外のLinuxディストリビューションも動作します。
 
-###動作可否確認状況(2015/07/14現在)
+###動作可否確認状況(2015/08/06現在)
 
 構成             | CentOS 7.1   | Fedora 21   | Fedora 22   
 --------------- | ------------ | ----------- | ----------- 
 All-in-One      | OK           | TBD         | ERR        
 One Node        | OK           | OK          | TBD        
-Multi-3Node     | OK           | TBD         | TBD        
+Multi-3Node     | OK           | OK          | TBD        
 Other Case      | TBD          | TBD         | TBD        
 
 All-in-One:
