@@ -1,6 +1,6 @@
 #RDO Neutron ネットワークの設定
 
-最終更新日: 2015/07/15
+最終更新日: 2015/08/06
 
 ##この文書について
 この文書は構築したOpenStack環境にNeutronネットワークを作成する手順と作成したネットワークの確認方法の一例を説明しています。
@@ -54,23 +54,7 @@ OpenStackの環境構成をコマンドで実行する場合は、/root/keystone
 
 - テナントリストを確認
 
-登録済みのテナントを確認して、ネットワーク作成時に指定するテナントを検討します｡
-
-````
-# keystone tenant-list
-/usr/lib/python2.7/site-packages/keystoneclient/shell.py:65: DeprecationWarning: The keystone CLI is deprecated in favor of python-openstackclient. For a Python library, continue using python-keystoneclient.
-  'python-keystoneclient.', DeprecationWarning)
-+----------------------------------+----------+---------+
-|                id                |   name   | enabled |
-+----------------------------------+----------+---------+
-| 08114e2588b14949bcf20115e7ae8a41 |  admin   |   True  |
-| 30f2cc33d5f8405895e5558b077a86c6 | services |   True  |
-+----------------------------------+----------+---------+
-````
-
-従来のkeystoneコマンドも利用できますが、Kiloからはそれぞれのコマンドではなく、openstackコマンドを使うことが推奨されます。
-
-openstackコマンドでテナントの一覧を見るには、"openstack project list"を実行します。
+登録済みのテナントを確認して、ネットワーク作成時に指定するテナントを検討します｡openstackコマンドでテナントの一覧を見るには、"openstack project list"を実行します。
 
 ````
 # openstack project list
@@ -155,7 +139,7 @@ qrouter-580e8e2f-f99a-4c33-8dea-7369bcc12c8d
 qdhcp-cdb0f492-cf59-40ac-8218-4fbabbbf9c08
 
 # ip netns exec `ip netns|grep qrouter` ip r
-default via 172.17.14.1 dev qg-fdf68416-44
+default via 192.168.1.1 dev qg-fdf68416-44
 192.168.1.0/24 dev qg-fdf68416-44  proto kernel  scope link  src 192.168.1.241
 192.168.2.0/24 dev qr-416cae4f-17  proto kernel  scope link  src 192.168.2.1
 
