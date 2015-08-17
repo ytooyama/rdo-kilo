@@ -13,11 +13,11 @@ RDO PackstackでOpenStack Kiloの色々な環境を作る手順書のような�
 
 OpenStack Compute上では上記以外のLinuxディストリビューションも動作します。
 
-###動作可否確認状況(2015/08/06現在)
+###動作可否確認状況(2015/08/17現在)
 
-構成             | CentOS 7.1   | Fedora 21   | Fedora 22   
+構成             | CentOS 7.1  | Fedora 21   | Fedora 22   
 --------------- | ------------ | ----------- | ----------- 
-All-in-One      | OK           | TBD         | ERR        
+All-in-One      | OK           | OK          | ERR        
 One Node        | OK           | OK          | TBD        
 Multi-3Node     | OK           | OK          | TBD        
 Other Case      | TBD          | TBD         | TBD        
@@ -37,6 +37,9 @@ Multi-3Node:
 Info:
 
 特になし
+
+###このリポジトリーのlibvirtについて
+Fedora 21のlibvirtは共有ストレージなしのライブマイグレーションが利用できません。これに対処するために、Fedora 22のlibvirtをバックポートしたパッケージを用意しました。手元環境では正常に動作することを確認しています。パッケージは圧縮されていますので使用するサーバー上で展開して、rpmパッケージをyumコマンドでインストールしてください。
 
 ###RDOってなに？
 

@@ -1,0 +1,63 @@
+Fedora 21でFedora 22のlibvirt SRPMをベースにrpmビルドする
+
+参考
+http://blog.tnmt.info/2010/03/10/rpm-build-tips-yum-builddep/
+http://tetsuyai.hatenablog.com/entry/20120106/1325839318
+http://wiki.centos.org/HowTos/RebuildSRPM
+
+
+$ sudo vi /etc/yum.repos.d/fedora-updates.repo
+
+#以下を追記
+
+[updates22-source]
+name=Fedora 22 - Updates Source
+failovermethod=priority
+baseurl=http://download.fedoraproject.org/pub/fedora/linux/updates/22/SRPMS/
+enabled=1
+gpgcheck=1
+metadata_expire=6h
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-22-$basearch
+skip_if_unavailable=False
+
+※作業が終わったら、enabled=0にしておくこと。
+
+ユーザー作成
+$ sudo adduser mockbuild
+$ sudo passwd mockbuild
+
+ビルドに必要なパッケージをインストール
+$ sudo yum groupinstall "Development Tools" 
+$ sudo yum-builddep libvirt-1.2.13.1-2.fc22.src.rpm
+$ sudo yum install numactl-devel numad xen-devel
+
+ソースパッケージのインストール
+$ sudo rpm -ivh libvirt-1.2.13.1-2.fc22.src.rpm
+
+必要に応じてSPECファイルの編集
+$ vi  ~/rpmbuild/SPECS/libvirt.spec
+
+ビルド
+$ rpmbuild -bb --clean ~/rpmbuild/SPECS/libvirt.spec
+
+$ ls rpmbuild/RPMS/x86_64/
+libvirt-1.2.13.1-2.fc21.x86_64.rpm
+libvirt-client-1.2.13.1-2.fc21.x86_64.rpm
+libvirt-daemon-1.2.13.1-2.fc21.x86_64.rpm
+...
+
+$ tar zcvf libvirt-1.2.13.tar.gz x86_64/
+
+$ pwd
+/home/mockbuild/rpmbuild/RPMS/x86_64
+
+インストール
+$ cd ~/rpmbuild/RPMS/x86_64
+$ sudo yum install libvirt*.rpm
+...
+Is this ok [y/d/N]: y
+
+サービスの開始
+$ sudo systemctl start libvirtd
+$ sudo systemctl status libvirtd |grep Active
+   Active: active (running) since Tue 2015-08-11 13:40:59 JST; 25s ago
