@@ -1,0 +1,6 @@
+last update:  2015/08/17
+package:       libvirt-1.2.13-1.fc21.tar.gz
+md5:             3eecb01a7d27e61bcdd3f8892b367d44
+source:          libvirt-1.2.13.1-2.fc22
+details:
+http://koji.fedoraproject.org/koji/buildinfo?buildID=643271
