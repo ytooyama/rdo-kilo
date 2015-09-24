@@ -1,6 +1,6 @@
 #RDO Kilo-Neutron Quickstart 3台構成編
 
-最終更新日: 2015/08/06
+最終更新日: 2015/09/24
 
 ##この文書について
 この文書はとりあえず3台構成のOpenStack Kilo環境を構築する場合の手順を説明しています。
@@ -221,16 +221,6 @@ CONFIG_NETWORK_HOSTS=192.168.1.11
 
 ````
 CONFIG_COMPUTE_HOSTS=192.168.1.12
-````
-
-- NICを利用したいものに変更する
-
-eth1がゲートウェイに接続されている場合の記述例。
-
-````
-CONFIG_NOVA_COMPUTE_PRIVIF=eth0
-CONFIG_NOVA_NETWORK_PRIVIF=eth0
-CONFIG_NOVA_NETWORK_PUBIF=eth1
 ````
 
 - そのほか、適宜設定を変更する
