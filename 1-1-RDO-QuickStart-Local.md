@@ -1,6 +1,6 @@
 #RDO Kilo-Neutron Quickstart 単体構成編
 
-最終更新日: 2015/09/24
+最終更新日: 2015/10/8
 
 ##この文書について
 この文書はとりあえず1台に全部入りのOpenStack Kilo環境をさくっと構築する場合の手順を説明しています。
@@ -273,14 +273,6 @@ CONFIG_NEUTRON_ML2_TENANT_NETWORK_TYPES=local
 
 次に外部と通信できるようにするための設定を行います。外部ネットワークとの接続を提供するノード(ネットワークノード、1台構成時はそのマシン)に仮想ネットワークブリッジインターフェイスであるbr-exを設定します。
 
-###◆public用として使うNICの設定を確認
-コマンドを実行して、アンサーファイルに設定したPublic用NIC(ゲートウェイとつながっている方)を確認します。
-以降の手順ではeth1であることを前提として解説します。
-
-````
-# less {packstack-answers-*,answer.txt}|grep CONFIG_NOVA_NETWORK_PUBIF
-CONFIG_NOVA_NETWORK_PUBIF=eth1
-````
 
 ###◆public用として使うNICの設定ファイルを修正
 Packstackコマンド実行後、eth1をbr-exにつなぐように設定をします(※BOOTPROTOは設定しない)
