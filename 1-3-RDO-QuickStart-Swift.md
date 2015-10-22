@@ -210,7 +210,13 @@ CentOS 7では以下のコマンドを実行してSwift関連のSELinux設定を
 
 ````
 #!/bin/bash
-systemctl $1 rabbitmq-server.service openstack-swift-account-auditor.service openstack-swift-account-reaper.service openstack-swift-account-replicator.service openstack-swift-account.service openstack-swift-container-auditor.service openstack-swift-container-replicator.service openstack-swift-container-updater.service openstack-swift-container.service openstack-swift-object-auditor.service openstack-swift-object-replicator.service openstack-swift-object-updater.service openstack-swift-object.service openstack-swift-proxy.service
+systemctl $1 rabbitmq-server.service openstack-swift-account-auditor.service \
+openstack-swift-account-reaper.service openstack-swift-account-replicator.service \
+openstack-swift-account.service openstack-swift-container-auditor.service \
+openstack-swift-container-replicator.service openstack-swift-container-updater.service \
+openstack-swift-container.service openstack-swift-object-auditor.service \
+openstack-swift-object-replicator.service openstack-swift-object-updater.service \
+openstack-swift-object.service openstack-swift-proxy.service
 ````
 
 次のように実行して`active (running)`になっていることを確認。
