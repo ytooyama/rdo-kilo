@@ -1,6 +1,6 @@
 #RDO Neutron ネットワークの設定
 
-最終更新日: 2015/08/06
+最終更新日: 2016/05/24
 
 ##この文書について
 この文書は構築したOpenStack環境にNeutronネットワークを作成する手順と作成したネットワークの確認方法の一例を説明しています。
@@ -187,3 +187,17 @@ KiloでUnable to establish connection to http://xxx.xxx.xxx.xxx:5000/v2.0/tokens
 - openstack-statusの結果がなかなか出てこない
 
 openstack-statusコマンドが含まれるopenstack-utilsパッケージは、更新日をみる限りおそらく更新されていないので使わないほうがいいです。パッケージ依存の関係で入っていますが、Kiloではうまく動かないようです。
+
+- PublicゲートウェイにPingを飛ばしてもpingが通らない/インスタンスで外部ネットワークにpingが届かない
+
+iptables-saveを仮想ルーター上で実行してみてください。
+
+````
+# ip netns exec `ip netns|grep qrouter` iptables-save
+````
+
+- ESXiで仮想マシンを作ってその環境でOpenStackを動かす場合、ESXi仮想マシンが接続しているネットワークのポートグループで「無差別モード(Promiscuous Mode)」を「承諾(Accept)」にする必要があります。
+
+* 仮想マシンが接続している「ポートグループ」を選択して「編集」ボタンをクリックします。
+* 「セキュリティ(Security)」タブをクリックします。
+* 「無差別モード(Promiscuous Mode)」の横のチェックマークをオンにして「承諾(Accept)」に上書きします。
