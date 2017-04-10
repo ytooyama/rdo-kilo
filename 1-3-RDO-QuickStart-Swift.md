@@ -1,12 +1,13 @@
-#Kilo-Swift Quickstart
+# Kilo-Swift Quickstart
 
 最終更新日: 2015/10/22
 
-##この文書について
+## この文書について
+
 この文書は1台のマシンにOpenStack KiloバージョンのSwift環境をさくっと構築する場合の手順を説明しています。
 
 
-##Step 0: 要件
+## Step 0: 要件
 
 ソフトウェア:
 
@@ -21,7 +22,7 @@
 - NIC: 1以上
 
                   
-##Step 1: IPアドレスなどの設定
+## Step 1: IPアドレスなどの設定
 
 - ホスト:
 
@@ -35,7 +36,6 @@
 # hostnamectl set-hostname rdo-kilo
 ````
 
-
 hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエントリーに追加します。
 
 ````
@@ -46,7 +46,7 @@ hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエン�
 ````
 
 
-##Step 2: ソフトウェアリポジトリーの追加
+## Step 2: ソフトウェアリポジトリーの追加
 
 ソフトウェアパッケージのインストールとアップデートを行います｡
 
@@ -81,7 +81,7 @@ CentOS-OpenStack-kilo.repo
 # yum install -y openstack-packstack openstack-packstack-doc python-netaddr
 ````
 
-##Step 4:DryRunモードでPackstackコマンドの実施
+## Step 4:DryRunモードでPackstackコマンドの実施
 
 ノードで以下のようにコマンドを実行してマニフェストファイルを作成します。
 
@@ -100,7 +100,7 @@ Additional information:
 
 作成したアンサーファイルは1台のマシンにすべてをインストールする設定が行われています｡IPアドレスや各種パスワードなどを適宜設定します｡
 
-##Step 5:アンサーファイルを自分の環境に合わせて設定
+## Step 5:アンサーファイルを自分の環境に合わせて設定
 
 Swift環境を作るには最低限以下のパラメータを設定します。項目についてはPackstackのヘルプを確認してください。
 
@@ -121,7 +121,7 @@ CONFIG_HEAT_INSTALL=n
 CONFIG_NAGIOS_INSTALL=n
 ````
 
-##Step 6: Packstackを実行してOpenStackのインストール
+## Step 6: Packstackを実行してOpenStackのインストール
 
 実行前に、各ノードでsetenforce 0を実行してください。
 これはSELinuxのモードを一時的に許容モードに設定するものです。再起動後は元のモードに戻ります。
@@ -141,9 +141,9 @@ CONFIG_NAGIOS_INSTALL=n
 エラーが出ず、インストールが正常に完了すれば「Installation completed successfully」と表示されます。
 
 
-##Swiftを使う前に
+## Swiftを使う前に
 
-###CentOS 7の場合
+### CentOS 7の場合
 
 CentOS 7では以下のコマンドを実行してSwift関連のSELinux設定を変更します。permissiveにしたり、disabledにする必要はありません。
 
@@ -153,7 +153,7 @@ CentOS 7では以下のコマンドを実行してSwift関連のSELinux設定を
 # reboot
 ````
 
-###Fedora 23の場合
+### Fedora 23の場合
 
 上記の設定を行ってもSwiftのサービスが動かないのでSELinuxが発動しないように設定変更します(Fedora 23 Betaでのテストなので、正式リリース時はオフにする必要がないかもしれません)。
 
@@ -164,7 +164,7 @@ CentOS 7では以下のコマンドを実行してSwift関連のSELinux設定を
 ````
 
 
-##Swiftを使う
+## Swiftを使う
 
 - コマンドでSwiftを利用
  - \<container>はコンテナー名
@@ -226,6 +226,6 @@ openstack-swift-object.service openstack-swift-proxy.service
 ````
 
 
-##このあとやること
+## このあとやること
 
 デフォルトではループバックデバイスが一つ登録されているだけなので、データの冗長性を保つには複数のストレージを追加してSwiftのストレージとして追加する必要があります（説明は省略）。

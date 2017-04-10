@@ -1,8 +1,9 @@
-#RDO Kilo-Neutron Quickstart 3台構成編
+# RDO Kilo-Neutron Quickstart 3台構成編
 
 最終更新日: 2015/10/8
 
-##この文書について
+## この文書について
+
 この文書はとりあえず3台構成のOpenStack Kilo環境を構築する場合の手順を説明しています。
 
 この文書は以下の公開資料を元にしています。
@@ -12,7 +13,7 @@ RDO Neutron Quickstart
 - <https://www.rdoproject.org/Quickstart>
 - <https://www.rdoproject.org/Neutron_with_existing_external_network>
 
-##Step 0: 要件
+## Step 0: 要件
 
 ソフトウェア:
 
@@ -58,14 +59,14 @@ NAME=eth1
 DEVICE=eth1
 ````
 
-Networkデーモンの開始:
+- Networkデーモンの開始:
 
 ````
 # ifdown "interface_name" && systemctl start network
 ````
 
 
-##Step 1: IPアドレスなどの設定
+## Step 1: IPアドレスなどの設定
 
 - OpenStack controllerホスト:
 
@@ -121,7 +122,7 @@ hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエン�
 ````
 
 
-##Step 2: ソフトウェアリポジトリーの追加
+## Step 2: ソフトウェアリポジトリーの追加
 
 ソフトウェアパッケージのインストールとアップデートを行います｡
 
@@ -138,7 +139,7 @@ hostnameに設定したホスト名を、hostsファイルの127.0.0.1のエン�
 # reboot
 ````
 
-##Step 3: Packstackおよび必要パッケージのインストール
+## Step 3: Packstackおよび必要パッケージのインストール
 
 コントローラーノードで以下のようにコマンドを実行します｡
 
@@ -163,7 +164,7 @@ pip (7.1.0)
 ````
 
 
-##Step 4:DryRunモードでPackstackコマンドの実施
+## Step 4:DryRunモードでPackstackコマンドの実施
 
 コントローラーノードで以下のようにコマンドを実行してマニフェストファイルを作成します。
 
@@ -183,7 +184,7 @@ Additional information:
 作成したアンサーファイルは1台のマシンにすべてをインストールする設定が行われています｡IPアドレスや各種パスワードなどを適宜設定します｡
 
 
-##Step 5:アンサーファイルを自分の環境に合わせて設定
+## Step 5:アンサーファイルを自分の環境に合わせて設定
 
 OpenStack環境を作るには最低限以下のパラメータを設定します。項目についてはPackstackのヘルプを確認してください。
 
@@ -253,7 +254,7 @@ CONFIG_KEYSTONE_ADMIN_PW=password
 CONFIG_PROVISION_DEMO=n
 ```
 
-##Step 6: Packstackを実行してOpenStackのインストール
+## Step 6: Packstackを実行してOpenStackのインストール
 
 実行前に、各ノードでsetenforce 0を実行してください。
 これはSELinuxのモードを一時的に許容モードに設定するものです。再起動後は元のモードに戻ります。
@@ -284,11 +285,12 @@ root@192.168.1.12's password:
 ![Dashboard Login](./images/login.png)
 
 
-##Step 7: ネットワーク設定の変更
+## Step 7: ネットワーク設定の変更
 
 次に外部と通信できるようにするための設定を行います。外部ネットワークとの接続を提供するノード(ネットワークノード、1台構成時はそのマシン)に仮想ネットワークブリッジインターフェイスであるbr-exを設定します。
 
-###◆public用として使うNICの設定ファイルを修正
+### ◆public用として使うNICの設定ファイルを修正
+
 Packstackコマンド実行後、eth1をbr-exにつなぐように設定をします(※BOOTPROTOは設定しない)
 
 eth1からIPアドレス、サブネットマスク、ゲートウェイの設定を削除して次の項目だけを記述し、br-exの方に設定を書き込みます｡
@@ -304,7 +306,8 @@ OVS_BRIDGE=br-ex
 NM_CONTROLLED=no
 ````
 
-###◆ブリッジインターフェイスの作成
+### ◆ブリッジインターフェイスの作成
+
 br-exにeth1のIPアドレスを設定します。
 
 ````
@@ -331,7 +334,8 @@ NM_CONTROLLED=no
 
 networkサービスに切り替え後は、NM_CONTROLLED=noは削除しても構いません（そのままでも構いません）。
 
-###◆動作確認
+### ◆動作確認
+
 Packstackインストーラーによるインストール時にエラー出力がされなければ問題はありませんが、念のためbr-exとNova、Neutronエージェントが導入されてかつ正しく認識されていることを確認しましょう。
 
 まずは再起動後にbr-exが正しく動作し、外のネットワークとつながっていることを確認します。
@@ -374,7 +378,7 @@ nova-cert        node1     internal         enabled    :-)   2015-04-28 02:22:19
 +--------------------+---------+-------+
 ````
 
-##この後の設定について
+## この後の設定について
 
 次にNeutron Networkを作成します。
 
